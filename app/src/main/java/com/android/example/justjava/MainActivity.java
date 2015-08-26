@@ -15,10 +15,16 @@ public class MainActivity extends AppCompatActivity {
 
     private int mQuantity = 0;
 
+    private TextView mPriceTextView;
+    private TextView mQuantityTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPriceTextView = (TextView) findViewById(R.id.price_text_view);
+        mQuantityTextView = (TextView) findViewById(R.id.quantity_text_view);
     }
 
     /**
@@ -56,18 +62,15 @@ public class MainActivity extends AppCompatActivity {
      * @param number 표시 할 수량
      */
     private void display(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        mQuantityTextView.setText("" + number);
     }
 
     private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        mPriceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        mPriceTextView.setText(message);
     }
 
 }

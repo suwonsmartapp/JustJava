@@ -4,6 +4,7 @@ package com.android.example.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -12,11 +13,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private final int PRICE_COFFEE = 2500;
+    private final int PRICE_WHIP = 500;
 
     private int mQuantity = 0;
 
     private TextView mPriceTextView;
     private TextView mQuantityTextView;
+    private CheckBox mToppingCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         mPriceTextView = (TextView) findViewById(R.id.price_text_view);
         mQuantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        mToppingCheckBox = (CheckBox) findViewById(R.id.topping_checkbox);
     }
 
     /**
@@ -33,8 +37,21 @@ public class MainActivity extends AppCompatActivity {
      * @param view 이벤트 처리 할 view
      */
     public void submitOrder(View view) {
-        String price = NumberFormat.getCurrencyInstance().format(PRICE_COFFEE * mQuantity);
-        String message = "Total : " + price + "\nThank you!";
+        String name = "Name : 오준석";
+        String topping = "Add whipped cream? " + mToppingCheckBox.isChecked();
+        String quantity = "Quantity : " + mQuantity;
+
+        int price = PRICE_COFFEE * mQuantity;
+
+        if (mToppingCheckBox.isChecked()) {
+            price += mQuantity * PRICE_WHIP;
+        }
+
+        String formattedPrice = "Total : "
+                + NumberFormat.getCurrencyInstance().format(price);
+
+        String message = name + "\n" + topping + "\n" + quantity + "\n" + formattedPrice + "\n"
+                + "Thank you!";
 
         displayMessage(message);
     }

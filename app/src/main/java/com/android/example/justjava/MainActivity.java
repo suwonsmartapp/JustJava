@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final int PRICE_COFFEE = 2500;
 
+    private int mQuantity = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,26 +23,46 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 주문 버튼 이벤트 처리
+     *
      * @param view 이벤트 처리 할 view
      */
     public void submitOrder(View view) {
 //        Log.d(TAG, "버튼 눌렸다!!!!");
-        display(2);
-        displayPrice(PRICE_COFFEE * 2);
+        display(mQuantity);
+        displayPrice(PRICE_COFFEE * mQuantity);
+    }
+
+    public void increment(View view) {
+        mQuantity++;
+        display(mQuantity);
+        displayPrice(PRICE_COFFEE * mQuantity);
+    }
+
+    public void decrement(View view) {
+        mQuantity--;
+
+        if (mQuantity < 0) {
+            mQuantity = 0;
+        }
+
+        display(mQuantity);
+        displayPrice(PRICE_COFFEE * mQuantity);
     }
 
     /**
      * 수량을 화면에 표시
+     *
      * @param number 표시 할 수량
      */
     private void display(int number) {
-        TextView quantityTextView = (TextView)findViewById(R.id.quantity_text_view);
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
 
     private void displayPrice(int number) {
-        TextView priceTextView = (TextView)findViewById(R.id.price_text_view);
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
+
 
 }

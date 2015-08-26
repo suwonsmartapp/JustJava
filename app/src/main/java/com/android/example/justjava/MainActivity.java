@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
      * @param view 이벤트 처리 할 view
      */
     public void submitOrder(View view) {
-//        Log.d(TAG, "버튼 눌렸다!!!!");
-        display(mQuantity);
-        displayPrice(PRICE_COFFEE * mQuantity);
+        String price = NumberFormat.getCurrencyInstance().format(PRICE_COFFEE * mQuantity);
+        String message = "Total : " + price + "\nThank you!";
+
+        displayMessage(message);
     }
 
     public void increment(View view) {
@@ -64,5 +65,9 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
+    }
 
 }

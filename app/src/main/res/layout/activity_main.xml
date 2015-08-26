@@ -21,13 +21,22 @@
             android:textAllCaps="true" />
 
         <CheckBox
-            android:id="@+id/topping_checkbox"
+            android:id="@+id/whip_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:text="Whipped cream"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/chocolate_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:paddingLeft="24dp"
-            android:text="Whipped cream"
+            android:text="Chocolate"
             android:textSize="16sp" />
+
 
         <TextView
             android:layout_width="wrap_content"

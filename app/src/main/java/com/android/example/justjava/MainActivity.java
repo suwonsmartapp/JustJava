@@ -14,12 +14,14 @@ public class MainActivity extends AppCompatActivity {
 
     private final int PRICE_COFFEE = 2500;
     private final int PRICE_WHIP = 500;
+    private final int PRICE_CHOCOLATE = 300;
 
     private int mQuantity = 0;
 
     private TextView mPriceTextView;
     private TextView mQuantityTextView;
-    private CheckBox mToppingCheckBox;
+    private CheckBox mWhipCheckBox;
+    private CheckBox mChocolateCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         mPriceTextView = (TextView) findViewById(R.id.price_text_view);
         mQuantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        mToppingCheckBox = (CheckBox) findViewById(R.id.topping_checkbox);
+        mWhipCheckBox = (CheckBox) findViewById(R.id.whip_checkbox);
+        mChocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
     }
 
     /**
@@ -38,19 +41,27 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         String name = "Name : 오준석";
-        String topping = "Add whipped cream? " + mToppingCheckBox.isChecked();
+        String whip = "Add whipped cream? " + mWhipCheckBox.isChecked();
+        String chocolate = "Add chocolate? " + mChocolateCheckBox.isChecked();
         String quantity = "Quantity : " + mQuantity;
 
         int price = PRICE_COFFEE * mQuantity;
 
-        if (mToppingCheckBox.isChecked()) {
+        if (mWhipCheckBox.isChecked()) {
             price += mQuantity * PRICE_WHIP;
+        }
+        if (mChocolateCheckBox.isChecked()) {
+            price += mQuantity * PRICE_CHOCOLATE;
         }
 
         String formattedPrice = "Total : "
                 + NumberFormat.getCurrencyInstance().format(price);
 
-        String message = name + "\n" + topping + "\n" + quantity + "\n" + formattedPrice + "\n"
+        String message = name + "\n"
+                + whip + "\n"
+                + chocolate + "\n"
+                + quantity + "\n"
+                + formattedPrice + "\n"
                 + "Thank you!";
 
         displayMessage(message);
